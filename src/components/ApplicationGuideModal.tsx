@@ -539,6 +539,7 @@ export default function ApplicationGuideModal({
                 {[
                   { id: "setup", label: "⚙️ System Configuration", desc: "Setting up roles & parameters" },
                   { id: "payroll", label: "💵 Payroll & Compliance", desc: "Nepal tax & salary system" },
+                  { id: "leave", label: "📅 Leave & Accruals", desc: "Labour Act 2074 rules" },
                   { id: "create", label: "➕ Create / Onboard", desc: "How to register records" },
                   { id: "read", label: "👁️ Read / View / Search", desc: "Accessing dossiers & files" },
                   { id: "update", label: "✏️ Update / Edit Profile", desc: "Adjusting salary & milestones" },
@@ -760,6 +761,52 @@ export default function ApplicationGuideModal({
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* SUBTAB: LEAVE */}
+                {manualSubTab === "leave" && (
+                  <div className="space-y-6">
+                    <div>
+                      <span className="px-2 py-0.5 bg-sky-100 text-sky-800 text-[9px] uppercase font-bold font-mono rounded">Module 4</span>
+                      <h3 className="font-extrabold text-base text-slate-900 mt-1">📅 Leave Management: The Nepali Way</h3>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed font-medium">
+                        Everything you need to run leave, compliant with Nepal's Labor Act 2074. Align with entitlements, Bikram Sambat (BS) fiscal years, multi-level manager-HR approvals, and live leave encashment calculations that flow straight into payroll.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                        <h4 className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                          💼 Labor Act 2074 Entitlements:
+                        </h4>
+                        <ul className="list-disc list-inside text-slate-600 text-xs space-y-1.5 pl-1">
+                          <li><strong>Annual/Home Leave:</strong> 1 day for every 20 worked days.</li>
+                          <li><strong>Sick Leave:</strong> Up to 12 days fully paid per year.</li>
+                          <li><strong>Maternity & Paternity:</strong> 98 days (Maternity) and 15 days (Paternity).</li>
+                          <li><strong>Bereavement:</strong> 13 days of fully paid mourning leave.</li>
+                        </ul>
+                      </div>
+
+                      <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-xl space-y-2">
+                        <h4 className="font-bold text-xs text-emerald-950 flex items-center gap-1.5">
+                          🔗 Connected Flow (No Silos):
+                        </h4>
+                        <ol className="list-decimal list-inside text-slate-700 text-xs space-y-1.5 pl-1 font-medium">
+                          <li><strong>Lands on Attendance:</strong> Approved leaves automatically write to attendance logs, preventing absenteeism alerts.</li>
+                          <li><strong>LWP Adjusts Payroll:</strong> Unpaid days subtract dynamically from basic salary and recalculate SSF, PF, and eTDS.</li>
+                        </ol>
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-sky-50 border border-sky-100 rounded-xl space-y-2.5">
+                      <h4 className="font-bold text-xs text-sky-950 flex items-center gap-1.5">
+                        📱 Mobile Self-Service View Preview:
+                      </h4>
+                      <p className="text-[11px] text-slate-500 font-medium">
+                        Field teams can view up-to-the-minute leave balances, check Bikram Sambat holiday dates, apply for half-day leaves, and view progress on multi-level approvals via our sleek interactive mobile simulator.
+                      </p>
                     </div>
                   </div>
                 )}
