@@ -1,0 +1,6 @@
+{
+  "name": "Appan HRM MIS & HRIS Portal",
+  "description": "Comprehensive Management Information System (MIS) and HRIS featuring Appan HRM including Attendance, Leave, WFH, Timesheets, Travel, Asset, Fleet, and Multi-level Workflows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
