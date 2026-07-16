@@ -164,7 +164,7 @@ export default function AuthModule({ onLoginSuccess, currentUser, onLogout, onSi
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/v1/auth/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword })
@@ -194,7 +194,7 @@ export default function AuthModule({ onLoginSuccess, currentUser, onLogout, onSi
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/v1/auth/register", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -242,7 +242,7 @@ export default function AuthModule({ onLoginSuccess, currentUser, onLogout, onSi
     setIsLoading(true);
     try {
       const token = localStorage.getItem("appan_token");
-      const res = await fetch("/api/v1/auth/sign-agreement", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/auth/sign-agreement`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

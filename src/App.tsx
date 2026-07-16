@@ -62,17 +62,17 @@ export default function App() {
         resStats, resEmp, resAtt, resLeaves, resWfh, 
         resTs, resTravel, resAssets, resFleet, resLogs, resSettings
       ] = await Promise.all([
-        fetch("/api/v1/dashboard/stats").then(r => r.json()),
-        fetch("/api/v1/employees").then(r => r.json()),
-        fetch("/api/v1/attendance").then(r => r.json()),
-        fetch("/api/v1/leaves").then(r => r.json()),
-        fetch("/api/v1/wfh").then(r => r.json()),
-        fetch("/api/v1/timesheets").then(r => r.json()),
-        fetch("/api/v1/travel").then(r => r.json()),
-        fetch("/api/v1/assets").then(r => r.json()),
-        fetch("/api/v1/fleet").then(r => r.json()),
-        fetch("/api/v1/logs").then(r => r.json()),
-        fetch("/api/v1/settings").then(r => r.json())
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/dashboard/stats`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/employees`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/attendance`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/leaves`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/wfh`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/timesheets`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/travel`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/assets`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/fleet`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/logs`).then(r => r.json()),
+        fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/settings`).then(r => r.json())
       ]);
 
       setStats(resStats);
@@ -100,7 +100,7 @@ export default function App() {
       const savedToken = localStorage.getItem("appan_token");
       if (savedToken) {
         try {
-          const res = await fetch("/api/v1/auth/me", {
+          const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/auth/me`, {
             headers: { "Authorization": `Bearer ${savedToken}` }
           });
           if (res.ok) {
@@ -134,7 +134,7 @@ export default function App() {
     const token = localStorage.getItem("appan_token");
     if (token) {
       try {
-        await fetch("/api/v1/auth/logout", {
+        await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/auth/logout`, {
           method: "POST",
           headers: { "Authorization": `Bearer ${token}` }
         });
@@ -156,7 +156,7 @@ export default function App() {
   // Post wrappers to persist to Express Server State
   const handleAddEmployee = async (newEmp: Partial<Employee>) => {
     try {
-      await fetch("/api/v1/employees", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/employees`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEmp)
@@ -169,7 +169,7 @@ export default function App() {
 
   const handleRemoveEmployee = async (id: string) => {
     try {
-      await fetch(`/api/v1/employees/${id}`, { method: "DELETE" });
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/employees/${id}`, { method: "DELETE" });
       fetchAllData();
     } catch (err) {
       console.error(err);
@@ -178,7 +178,7 @@ export default function App() {
 
   const handleUpdateEmployee = async (id: string, emp: Partial<Employee>) => {
     try {
-      await fetch(`/api/v1/employees/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/employees/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emp)
@@ -191,7 +191,7 @@ export default function App() {
 
   const handleCheckIn = async (employeeId: string) => {
     try {
-      const res = await fetch("/api/v1/attendance/check-in", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/attendance/check-in`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employeeId })
@@ -209,7 +209,7 @@ export default function App() {
 
   const handleCheckOut = async (employeeId: string) => {
     try {
-      const res = await fetch("/api/v1/attendance/check-out", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/attendance/check-out`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employeeId })
@@ -227,7 +227,7 @@ export default function App() {
 
   const handleAddLeave = async (req: Partial<LeaveRequest>) => {
     try {
-      await fetch("/api/v1/leaves", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/leaves`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req)
@@ -240,7 +240,7 @@ export default function App() {
 
   const handleApproveLeave = async (id: string, action: "Approved" | "Rejected") => {
     try {
-      await fetch(`/api/v1/leaves/${id}/approve`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/leaves/${id}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action, approver: "Aarav Sharma" })
@@ -253,7 +253,7 @@ export default function App() {
 
   const handleAddWfh = async (req: Partial<WfhRequest>) => {
     try {
-      await fetch("/api/v1/wfh", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/wfh`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req)
@@ -266,7 +266,7 @@ export default function App() {
 
   const handleApproveWfh = async (id: string, action: "Approved" | "Rejected") => {
     try {
-      await fetch(`/api/v1/wfh/${id}/approve`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/wfh/${id}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action, approver: "Aarav Sharma" })
@@ -279,7 +279,7 @@ export default function App() {
 
   const handleAddTimesheet = async (req: Partial<Timesheet>) => {
     try {
-      await fetch("/api/v1/timesheets", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/timesheets`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req)
@@ -292,7 +292,7 @@ export default function App() {
 
   const handleAddTravel = async (req: Partial<TravelRequest>) => {
     try {
-      await fetch("/api/v1/travel", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/travel`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req)
@@ -305,7 +305,7 @@ export default function App() {
 
   const handleApproveTravel = async (id: string, action: "Approved" | "Rejected") => {
     try {
-      await fetch(`/api/v1/travel/${id}/approve`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/travel/${id}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action, approver: "Priya Patel" })
@@ -318,7 +318,7 @@ export default function App() {
 
   const handleSettleTravel = async (id: string, expenses: { item: string; amount: number }[]) => {
     try {
-      await fetch(`/api/v1/travel/${id}/settle`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/travel/${id}/settle`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ expenses })
@@ -331,7 +331,7 @@ export default function App() {
 
   const handleAddAsset = async (asset: Partial<Asset>) => {
     try {
-      await fetch("/api/v1/assets", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/assets`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(asset)
@@ -344,7 +344,7 @@ export default function App() {
 
   const handleSendToMaintenance = async (id: string, cost: number, description: string) => {
     try {
-      await fetch(`/api/v1/assets/${id}/maintenance`, {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/assets/${id}/maintenance`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cost, description })
@@ -357,7 +357,7 @@ export default function App() {
 
   const handleResolveMaintenance = async (id: string) => {
     try {
-      await fetch(`/api/v1/assets/${id}/resolve-maintenance`, { method: "POST" });
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/assets/${id}/resolve-maintenance`, { method: "POST" });
       fetchAllData();
     } catch (err) {
       console.error(err);
@@ -366,7 +366,7 @@ export default function App() {
 
   const handleAddFuelLog = async (vehicleId: string, log: any) => {
     try {
-      await fetch("/api/v1/fleet/logs", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/fleet/logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ vehicleId, ...log })
@@ -379,7 +379,7 @@ export default function App() {
 
   const handleAddTripLog = async (vehicleId: string, log: any) => {
     try {
-      await fetch("/api/v1/fleet/logs", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/fleet/logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ vehicleId, ...log })
@@ -392,7 +392,7 @@ export default function App() {
 
   const handleUpdateSettings = async (updated: Partial<OrganizationSettings>) => {
     try {
-      await fetch("/api/v1/settings", {
+      await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/settings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated)

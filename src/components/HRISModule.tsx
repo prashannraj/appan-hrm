@@ -59,7 +59,7 @@ export default function HRISModule({ employees, assets, onAddEmployee, onRemoveE
   const fetchPolicies = async () => {
     setLoadingPolicies(true);
     try {
-      const res = await fetch("/api/v1/policies");
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/policies`);
       if (res.ok) {
         const data = await res.json();
         setPolicies(data);
@@ -81,7 +81,7 @@ export default function HRISModule({ employees, assets, onAddEmployee, onRemoveE
       return;
     }
     try {
-      const res = await fetch(`/api/v1/policies/${policyId}/acknowledge`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/policies/${policyId}/acknowledge`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employeeId })
@@ -103,7 +103,7 @@ export default function HRISModule({ employees, assets, onAddEmployee, onRemoveE
       return;
     }
     try {
-      const res = await fetch("/api/v1/policies", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || "https://hrms.getappantech.com"}/api/v1/policies`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPolicyForm)
